@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,14 +30,14 @@ public class YerbaOrder extends BaseEntity {
 
     @OneToMany(mappedBy = "yerbaOrder", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    private Set<YerbaOrderLine> yerbaOrderLines;
+    private List<YerbaOrderLine> yerbaOrderLines;
 
     private OrderStatusEnum orderStatus = OrderStatusEnum.NEW;
     private String orderStatusCallbackUrl;
 
     @Builder
     public YerbaOrder(UUID id, Long version, Timestamp createdAt, Timestamp updatedAt,
-                      String customerRef, Customer customer, Set<YerbaOrderLine> yerbaOrderLines,
+                      String customerRef, Customer customer, List<YerbaOrderLine> yerbaOrderLines,
                       OrderStatusEnum orderStatus, String orderStatusCallbackUrl) {
         super(id, version, createdAt, updatedAt);
         this.customerRef = customerRef;
