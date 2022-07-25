@@ -40,7 +40,8 @@ public class TestingRoomService {
     @Transactional
     @Scheduled(fixedRate = 5000)
     public void placeTastingRoomOrder() {
-        List<Customer> customerList = customerRepository.findAllByCustomerNameLike(YerbaOrderBootStrap.TASTING_ROOM);
+        List<Customer> customerList = customerRepository
+                .findAllByCustomerNameLike(YerbaOrderBootStrap.TASTING_ROOM);
         if (customerList.size() == 1) {
             Customer customer = customerList.get(0);
             log.info("Placing order for customer {}", customer.getCustomerName());
@@ -69,6 +70,7 @@ public class TestingRoomService {
                 .yerbaOrderLines(yerbaOrderLineDtoList)
                 .build();
 
-        YerbaOrderDto savedYerbaOrderDto = yerbaOrderService.createYerbaOrder(customer.getId(), yerbaOrderDto);
+        YerbaOrderDto savedYerbaOrderDto = yerbaOrderService
+                .createYerbaOrder(customer.getId(), yerbaOrderDto);
     }
 }
