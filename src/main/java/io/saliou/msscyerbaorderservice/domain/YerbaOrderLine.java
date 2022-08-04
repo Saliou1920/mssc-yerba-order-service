@@ -18,17 +18,19 @@ public class YerbaOrderLine extends BaseEntity {
 
     @ManyToOne
     private YerbaOrder yerbaOrder;
-
     private UUID yerbaId;
+
+    private String upc;
     private Integer orderQuantity = 0;
     private Integer deliveredQuantity = 0;
 
     @Builder
     public YerbaOrderLine(UUID id, Long version, Timestamp createdAt, Timestamp updatedAt, YerbaOrder yerbaOrder,
-                          UUID yerbaId, Integer orderQuantity, Integer deliveredQuantity) {
+                          UUID yerbaId, Integer orderQuantity, Integer deliveredQuantity, String upc) {
         super(id, version, createdAt, updatedAt);
         this.yerbaOrder = yerbaOrder;
         this.yerbaId = yerbaId;
+        this.upc = upc;
         this.orderQuantity = orderQuantity;
         this.deliveredQuantity = deliveredQuantity;
     }
