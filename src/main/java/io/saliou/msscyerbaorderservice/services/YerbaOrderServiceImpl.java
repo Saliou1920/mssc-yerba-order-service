@@ -56,6 +56,7 @@ public class YerbaOrderServiceImpl implements YerbaOrderService {
         yerbaOrder.setCustomer(customerOptional.get());
         yerbaOrder.setOrderStatus(OrderStatusEnum.NEW);
         yerbaOrder.getYerbaOrderLines().forEach(yerbaOrderLine -> yerbaOrderLine.setYerbaOrder(yerbaOrder));
+        log.debug("Saving yerba order {}", yerbaOrder);
         return yerbaOrderMapper.yerbaOrderToDto(yerbaOrderRepository.save(yerbaOrder));
     }
 
