@@ -56,7 +56,7 @@ public class YerbaOrderServiceImpl implements YerbaOrderService {
         yerbaOrder.setCustomer(customerOptional.get());
         yerbaOrder.setOrderStatus(OrderStatusEnum.NEW);
         yerbaOrder.getYerbaOrderLines().forEach(yerbaOrderLine -> yerbaOrderLine.setYerbaOrder(yerbaOrder));
-        log.debug("Saving yerba order {}", yerbaOrder);
+        log.info("Saving yerba order {}", yerbaOrder);
         return yerbaOrderMapper.yerbaOrderToDto(yerbaOrderRepository.save(yerbaOrder));
     }
 
@@ -76,6 +76,8 @@ public class YerbaOrderServiceImpl implements YerbaOrderService {
             log.error("YerbaOrder with id {} not found", orderId);
             throw new IllegalArgumentException("YerbaOrder with id " + orderId + " not found");
         }
+
+        log.info("Returning yerba order {}", yerbaOrderOptional.get());
         return yerbaOrderMapper.yerbaOrderToDto(yerbaOrderOptional.get());
     }
 

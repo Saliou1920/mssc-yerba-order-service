@@ -34,7 +34,7 @@ public class YerbaOrderBootStrap implements CommandLineRunner {
                     .apiKey(UUID.randomUUID())
                     .build());
 
-            log.debug("Customer id " + savedCustomer.getId().toString() + " saved");
+            log.info("Saved Tasting Room: " + savedCustomer);
         }
     }
 }
